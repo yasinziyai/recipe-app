@@ -54,11 +54,11 @@ const AiPage = () => {
   console.log(data2);
 
   return (
-    <div className=" max-w-[616px]  rounded-md  flex flex-col min-h-[1080px] mx-auto bg-[#232324] my-8 py-8 px-4">
+    <div className="  relative  lg:max-w-[616px]  rounded-md  flex flex-col min-h-[1016px] mx-auto bg-[#232324] lg:my-8 py-8 px-4 md:my-0 sm:w-[528px]">
       {/* header */}
       <div className="border-b-[1px] border-[#FFFFFF] border-opacity-10 pb-4">
         <h1 className="text-[#FFFFFF] font-black">چی میخوری؟</h1>
-        <p className="mt-2 text-[#FFFFFF] font-medium">
+        <p className="mt-2  text-[#FFFFFF] font-medium">
           بهم بگو چی داری تو خونت، بهت میگم چی بخوری
         </p>
         <input
@@ -104,7 +104,7 @@ const AiPage = () => {
 
       <button
         onClick={clickHandler}
-        className=" py-3 items-center w-full sticky bottom-0 top-[540px]  font-black rounded-md bg-[#FFFFFF] text-[#000000] "
+        className=" py-3 items-center sticky  top-[900px]  font-black rounded-md bg-[#FFFFFF] text-[#000000] "
       >
         پیشنهاد بده
       </button>
