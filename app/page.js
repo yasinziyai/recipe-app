@@ -9,6 +9,7 @@ const AiPage = () => {
   const [search, setSearch] = useState("");
   const [responseAi, setResponseAi] = useState("{}");
   const [loading, setLoading] = useState(false);
+  const [click, setClick] = useState(1);
   async function aiRun() {
     setLoading(true);
     setResponseAi("{}");
@@ -50,35 +51,42 @@ const AiPage = () => {
 
   const clickHandler = () => {
     aiRun();
+    setClick(click + 1);
   };
   console.log(data2);
 
   return (
-    <div className="  relative  lg:max-w-[616px]  rounded-md  flex flex-col min-h-[1016px] mx-auto bg-[#232324] lg:my-8 py-8 px-4 md:my-0 sm:w-[528px]">
+    <div
+      className={`  lg:w-[616px] md:w-[616px] sm:w-[528px] lg:rounded-md md:rounded-none   flex-col  min-h-[1016px] mx-auto bg-[#232324] lg:my-8  py-8 px-4 md:my-0 `}
+    >
       {/* header */}
-      <div className="border-b-[1px] border-[#FFFFFF] border-opacity-10 pb-4">
-        <h1 className="text-[#FFFFFF] font-black">چی میخوری؟</h1>
-        <p className="mt-2  text-[#FFFFFF] font-medium">
+      <div
+        className={` ${
+          validatedData?.data ? "border-b-[1px]" : null
+        }  border-[#FFFFFF] border-opacity-10 pb-4`}
+      >
+        <h1 className="text-[#FFFFFF]  font-black text-[36px] leading-[51.48px]">
+          چی میخوری؟
+        </h1>
+        <p className="mt-2 opacity-[65%] text-[#FFFFFF] text-[24px] leading-[34.32px] font-medium">
           بهم بگو چی داری تو خونت، بهت میگم چی بخوری
         </p>
         <input
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="مثلا: سوسیس، تخم مرغ، بادمجون"
-          className="w-full py-3 pr-4 text-[#FFFFFF] font-medium rounded-md  bg-[#27272A] mt-6"
+          className="w-full text-[24px] leading-[34.32px] py-3 pr-4 text-[#FFFFFF] font-medium rounded-md outline-none bg-[#27272A] mt-6"
         />
       </div>
       {/* response */}
 
       {loading ? (
-        <div className="mx-auto mt-36">
+        <div className=" items-center w-full mx-auto">
           <Circles
             height="80"
             width="80"
             color="#27272A"
             ariaLabel="circles-loading"
-            wrapperStyle={{}}
-            wrapperClass=""
             visible={true}
           />
         </div>
@@ -103,10 +111,13 @@ const AiPage = () => {
       {/* footer */}
 
       <button
+        disabled={loading && false}
         onClick={clickHandler}
-        className=" py-3 items-center sticky  top-[900px]  font-black rounded-md bg-[#FFFFFF] text-[#000000] "
+        className={`${
+          loading && "opacity-5  "
+        } py-3 items-center  sticky w-full   -bottom-0  font-black rounded-md bg-[#FFFFFF] text-[#000000] `}
       >
-        پیشنهاد بده
+        {click > 1 && validatedData?.data ? "دوباره بگو" : "پیشنهاد بده"}
       </button>
     </div>
   );
