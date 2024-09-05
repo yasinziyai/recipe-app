@@ -50,14 +50,18 @@ const AiPage = () => {
   const validatedData = validJson(jsonString);
 
   const clickHandler = () => {
-    aiRun();
+    if (search.length > 1) {
+      aiRun();
+    } else {
+      return null;
+    }
     setClick(click + 1);
   };
   console.log(data2);
 
   return (
     <div
-      className={`  lg:w-[616px] md:w-[616px] sm:w-[528px] lg:rounded-md md:rounded-none   flex-col  min-h-[1016px] mx-auto bg-[#232324] lg:my-8  py-8 px-4 md:my-0 `}
+      className={` relative md:min-h-[1080px]  md:w-full  xl:w-[616px] sm:w-[528px] xl:rounded-md rounded-none  flex-col  xl:min-h-[1016px] min-h-[1080px] mx-auto bg-[#232324] xl:my-8  md:my-0 py-8 px-4 my-0 `}
     >
       {/* header */}
       <div
@@ -81,19 +85,11 @@ const AiPage = () => {
       {/* response */}
 
       {loading ? (
-        <div className=" items-center w-full mx-auto">
-          <Circles
-            height="80"
-            width="80"
-            color="#27272A"
-            ariaLabel="circles-loading"
-            visible={true}
-          />
-        </div>
+        <div className=" "></div>
       ) : (
         <>
           {validatedData?.data?.map((i) => (
-            <div className="min-h-[184px] items-center justify-center bg-[#27272A] rounded-md px-4 py-4 my-4">
+            <div className="min-h-[184px] pb-[32px] items-center justify-center bg-[#27272A] rounded-md px-4 py-4 my-4">
               <h1 className="font-medium text-[#FFFFFF]">
                 عنوان غذا : {i.title}
               </h1>
@@ -111,11 +107,13 @@ const AiPage = () => {
       {/* footer */}
 
       <button
-        disabled={loading && false}
+        disabled={loading || (search.length === 0 && false)}
         onClick={clickHandler}
         className={`${
-          loading && "opacity-5  "
-        } py-3 items-center  sticky w-full   -bottom-0  font-black rounded-md bg-[#FFFFFF] text-[#000000] `}
+          loading ? "opacity-5" : null
+        } py-3 items-center  fixed xl:bottom-[40px]  bottom-8 inset-x-4 
+        xl:inset-x-96 
+        font-black rounded-md bg-[#FFFFFF] text-[#000000] `}
       >
         {click > 1 && validatedData?.data ? "دوباره بگو" : "پیشنهاد بده"}
       </button>
@@ -134,3 +132,10 @@ function validJson(data2) {
 }
 
 export default AiPage;
+<Circles
+  height="80"
+  width="80"
+  color="#27272A"
+  ariaLabel="circles-loading"
+  visible={true}
+/>;
