@@ -108,7 +108,7 @@ const AiPage = () => {
       <div
         className={`
           ${loading ? "opacity-5" : ""}
-           fixed inset-x-0 mx-[16px]  bottom-[16px] sm:mx-auto  sm:w-[496px] md:w-[584px] xl:bottom-0 xl:sticky xl:bg-[#232324]
+           fixed inset-x-0 mx-[16px]  bottom-[16px] sm:mx-auto  sm:w-[496px] md:w-[584px]  xl:bg-[#232324]
         font-black  text-[#000000] `}
       >
         <button
