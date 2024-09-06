@@ -89,7 +89,7 @@ const AiPage = () => {
       ) : (
         <>
           {validatedData?.data?.map((i) => (
-            <div className="min-h-[184px] mb-[64px] items-center justify-center bg-[#27272A] rounded-md px-4 py-4 my-4">
+            <div className=" items-center justify-center bg-[#27272A] rounded-md px-4 py-4 my-4">
               <h1 className="font-medium text-[#FFFFFF]">
                 عنوان غذا : {i.title}
               </h1>
@@ -108,7 +108,7 @@ const AiPage = () => {
       <div
         className={`
           ${loading ? "opacity-5" : ""}
-           fixed inset-x-0 mx-[16px]  bottom-[16px] sm:mx-auto  sm:w-[496px] md:w-[584px] xl:bottom-[64px]
+           fixed inset-x-0 mx-[16px]  bottom-[16px] sm:mx-auto  sm:w-[496px] md:w-[584px] xl:bottom-0 xl:sticky xl:bg-[#232324]
         font-black  text-[#000000] `}
       >
         <button
