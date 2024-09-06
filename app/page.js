@@ -61,7 +61,7 @@ const AiPage = () => {
 
   return (
     <div
-      className={` relative md:min-h-[1080px]  md:w-full  xl:w-[616px] sm:w-[528px] xl:rounded-md rounded-none  flex-col  xl:min-h-[1016px] min-h-[1080px] mx-auto bg-[#232324] xl:my-8  md:my-0 py-8 px-4 my-0 `}
+      className={` md:w-[616px] sm:w-[528px] xl:rounded-md rounded-none  flex-col   min-h-[1080px] mx-auto bg-[#232324] xl:my-8 xl:inset-y-0 py-8 px-4 `}
     >
       {/* header */}
       <div
@@ -89,7 +89,7 @@ const AiPage = () => {
       ) : (
         <>
           {validatedData?.data?.map((i) => (
-            <div className="min-h-[184px] pb-[32px] items-center justify-center bg-[#27272A] rounded-md px-4 py-4 my-4">
+            <div className="min-h-[184px] mb-[64px] items-center justify-center bg-[#27272A] rounded-md px-4 py-4 my-4">
               <h1 className="font-medium text-[#FFFFFF]">
                 عنوان غذا : {i.title}
               </h1>
@@ -105,18 +105,20 @@ const AiPage = () => {
       )}
 
       {/* footer */}
-
-      <button
-        disabled={loading || (search.length === 0 && false)}
-        onClick={clickHandler}
-        className={`${
-          loading ? "opacity-5" : null
-        } py-3 items-center  fixed xl:bottom-[40px]  bottom-8 inset-x-4 
-        xl:inset-x-96 
-        font-black rounded-md bg-[#FFFFFF] text-[#000000] `}
+      <div
+        className={`
+          ${loading ? "opacity-5" : ""}
+           fixed inset-x-0 mx-[16px]  bottom-[16px] sm:mx-auto  sm:w-[496px] md:w-[584px] xl:bottom-[64px]
+        font-black  text-[#000000] `}
       >
-        {click > 1 && validatedData?.data ? "دوباره بگو" : "پیشنهاد بده"}
-      </button>
+        <button
+          disabled={loading || (search.length === 0 && false)}
+          onClick={clickHandler}
+          className=" w-full bg-[#FFFFFF]  py-3  rounded-md "
+        >
+          {click > 1 && validatedData?.data ? "دوباره بگو" : "پیشنهاد بده"}
+        </button>
+      </div>
     </div>
   );
 };
