@@ -87,7 +87,7 @@ const AiPage = () => {
       {loading ? (
         <div className=" "></div>
       ) : (
-        <>
+        <div>
           {validatedData?.data?.map((i) => (
             <div className=" items-center justify-center bg-[#27272A] rounded-md px-4 py-4 my-4">
               <h1 className="font-medium text-[#FFFFFF]">
@@ -101,14 +101,14 @@ const AiPage = () => {
               </p>
             </div>
           ))}
-        </>
+        </div>
       )}
 
       {/* footer */}
       <div
         className={`
           ${loading ? "opacity-5" : ""}
-           fixed inset-x-0 mx-[16px]  bottom-[16px] sm:mx-auto  sm:w-[496px] md:w-[584px] xl:bottom-[32px] 
+           fixed inset-x-0 mx-[16px]  bottom-[16px] sm:mx-auto bg-[#27272A]  sm:w-[496px] md:w-[584px] xl:bottom-[42px]
         font-black  text-[#000000] `}
       >
         <button
