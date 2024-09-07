@@ -31,7 +31,7 @@ const AiPage = () => {
     },
         ]
     }
-
+      -فاصله ی بین کلمات رعایت شود و کلمات ب کلمه های بعی چسبیده نباشد
     `;
 
     const result = await model.generateContent(prompt);
