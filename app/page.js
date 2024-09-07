@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import { Circles } from "react-loader-spinner";
+import { motion } from "framer-motion";
 const AiPage = () => {
   const genAi = new GoogleGenerativeAI(
     "AIzaSyB9ke6GbPgcjEbz0ilBgJmCaIYWeQKKsiU"
@@ -58,66 +58,85 @@ const AiPage = () => {
     setClick(click + 1);
   };
   console.log(data2);
-
+  const listVariants = {
+    hidden: {
+      opacity: 0,
+      x: 25,
+    },
+    visible: {
+      opacity: 1,
+      x: 0,
+    },
+  };
   return (
     <div
-      className={` md:w-[616px] sm:w-[528px] xl:rounded-md rounded-none  flex-col   min-h-[1080px] mx-auto bg-[#232324] xl:my-8 xl:inset-y-0 py-8 px-4 `}
+      className={`  md:w-[616px] sm:w-[528px] xl:rounded-md rounded-none  flex-col   min-h-[1080px] mx-auto bg-[#232324] xl:my-8 xl:inset-y-0 py-8 px-4 `}
     >
-      {/* header */}
-      <div
-        className={` ${
-          validatedData?.data ? "border-b-[1px]" : null
-        }  border-[#FFFFFF] border-opacity-10 pb-4`}
-      >
-        <h1 className="text-[#FFFFFF]  font-black text-[36px] leading-[51.48px]">
-          چی میخوری؟
-        </h1>
-        <p className="mt-2 opacity-[65%] text-[#FFFFFF] text-[24px] leading-[34.32px] font-medium">
-          بهم بگو چی داری تو خونت، بهت میگم چی بخوری
-        </p>
-        <input
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          placeholder="مثلا: سوسیس، تخم مرغ، بادمجون"
-          className="w-full text-[24px] leading-[34.32px] py-3 pr-4 text-[#FFFFFF] font-medium rounded-md outline-none bg-[#27272A] mt-6"
-        />
-      </div>
-      {/* response */}
-
-      {loading ? (
-        <div className=" "></div>
-      ) : (
-        <div>
-          {validatedData?.data?.map((i) => (
-            <div className=" items-center justify-center bg-[#27272A] rounded-md px-4 py-4 my-4">
-              <h1 className="font-medium text-[#FFFFFF]">
-                عنوان غذا : {i.title}
-              </h1>
-              <p className="text-[#FFFFFF] font-medium mt-4 ">
-                - مواد لازم : {i.ingredients}
-              </p>
-              <p className="text-[#FFFFFF] font-medium mt-4 ">
-                - دستور پخت : {i.recipe}
-              </p>
-            </div>
-          ))}
-        </div>
-      )}
-
-      {/* footer */}
-      <div
-        className={`
-          ${loading ? "opacity-5" : ""}
-           fixed inset-x-0 mx-[16px]  bottom-[16px] sm:mx-auto bg-[#27272A]  sm:w-[496px] md:w-[584px] xl:bottom-[42px]
-        font-black  text-[#000000] `}
-      >
-        <button
-          disabled={loading || (search.length === 0 && false)}
-          onClick={clickHandler}
-          className=" w-full bg-[#FFFFFF]  py-3  rounded-md "
+      <div className="relative">
+        {/* header */}
+        <div
+          className={` ${
+            validatedData?.data ? "border-b-[1px]" : null
+          }  border-[#FFFFFF] border-opacity-10 pb-4`}
         >
-          {click > 1 && validatedData?.data ? "دوباره بگو" : "پیشنهاد بده"}
-        </button>
+          <h1 className="text-[#FFFFFF]  font-black text-[36px] leading-[51.48px]">
+            چی میخوری؟
+          </h1>
+          <p className="mt-2 opacity-65 text-[#FFFFFF] text-[24px] leading-[34.32px] font-medium">
+            بهم بگو چی داری تو خونت، بهت میگم چی بخوری
+          </p>
+          <input
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="مثلا: سوسیس، تخم مرغ، بادمجون"
+            className="w-full text-w sm:text-[24px] text-opacity-45 leading-[34.32px] py-3 pr-4 text-[#FFFFFF] font-medium rounded-md outline-none bg-[#27272A] mt-6"
+          />
+        </div>
+        {/* response */}
+
+        {validatedData?.data?.map((i, index) => (
+          <motion.div
+            variants={listVariants}
+            initial="hidden"
+            animate="visible"
+            key={index}
+            className=" items-center justify-center bg-[#27272A] rounded-md px-4 py-4 my-4"
+          >
+            <h1 className="font-medium text-[#FFFFFF]">
+              عنوان غذا : {i.title}
+            </h1>
+            <p className="text-[#FFFFFF] font-medium mt-4 ">
+              - مواد لازم : {i.ingredients}
+            </p>
+            <p className="text-[#FFFFFF] font-medium mt-4 ">
+              - دستور پخت : {i.recipe}
+            </p>
+          </motion.div>
+        ))}
+
+        {/* footer */}
+        <div
+          className={`
+          ${loading ? "opacity-5" : ""}
+          fixed inset-x-0 mx-[16px]  bottom-[16px] sm:mx-auto bg-[#27272A]   sm:w-[496px] md:w-[584px] xl:bottom-[42px]
+          font-black  text-[#000000]  `}
+        >
+          <button
+            disabled={loading || (search.length === 0 && false)}
+            onClick={clickHandler}
+            className=" w-full bg-[#FFFFFF]  py-3  rounded-md "
+          >
+            {loading ? (
+              "دارم فک میکنم!"
+            ) : (
+              <>
+                {click > 1 && validatedData?.data
+                  ? "دوباره بگو"
+                  : "پیشنهاد بده"}
+              </>
+            )}
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -134,10 +153,3 @@ function validJson(data2) {
 }
 
 export default AiPage;
-<Circles
-  height="80"
-  width="80"
-  color="#27272A"
-  ariaLabel="circles-loading"
-  visible={true}
-/>;
