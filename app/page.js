@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { motion } from "framer-motion";
 const AiPage = () => {
@@ -27,11 +27,11 @@ const AiPage = () => {
     title: "title in farsi",
     ingredients :"ingredients food in farsi",
     recipe:"recipe in farsi"
-    image :"https://www.pinterest.com/ همه عکسا فقط از این وب باشند"
     },
         ]
-    }
-      -فاصله ی بین کلمات رعایت شود و کلمات ب کلمه های بعی چسبیده نباشد
+    } 
+    -فاصله ی بین کلمات رعایت شود و کلمات ب کلمه های بعی چسبیده نباشد
+     
     `;
 
     const result = await model.generateContent(prompt);
@@ -48,8 +48,7 @@ const AiPage = () => {
 
   const jsonString = data2;
   const validatedData = validJson(jsonString);
-
-  const clickHandler = () => {
+  const clickHandler = (e) => {
     if (search.length > 1) {
       aiRun();
     } else {
@@ -119,9 +118,16 @@ const AiPage = () => {
           font-black  text-[#000000]  `}
       >
         <button
+          onKeyDownCapture={(e) => {
+            if (e.key === "Enter") {
+              clickHandler();
+            }
+          }}
           disabled={loading || (search.length === 0 && false)}
           onClick={clickHandler}
-          className=" w-full bg-[#FFFFFF]  py-3  rounded-md "
+          className={` w-full bg-[#FFFFFF]  py-3  rounded-md ${
+            loading ? "animate-bounce" : ""
+          }`}
         >
           {loading ? (
             "دارم فک میکنم!"

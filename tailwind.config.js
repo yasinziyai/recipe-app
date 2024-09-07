@@ -5,14 +5,12 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  // theme: {
-  //   screens: {
-  //     sm: "430px",
-  //     // md: "700px",
-  //     // lg: "1791px",
-  //     // xl: "",
-  //   },
-  //   // extend: {},
-  // },
+  theme: {
+    extend: {
+      animation: {
+        plugin: "pulse 1s infinite",
+      },
+    },
+  },
   plugins: [],
 };
