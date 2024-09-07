@@ -79,7 +79,7 @@ const AiPage = () => {
   return (
     <form
       onSubmit={handleKeyDown}
-      className={` md:w-[616px] sm:w-[528px] xl:rounded-[16px] rounded-none  flex-col   min-h-screen mx-auto bg-[#232324] xl:my-[32px]  py-8 px-4 `}
+      className={` md:w-[616px] sm:w-[528px] xl:rounded-[16px]  overflow-auto rounded-none  flex-col   min-h-screen mx-auto bg-[#232324] md:my-[32px]  py-8 px-4 `}
     >
       {/* header */}
       <div
@@ -125,7 +125,7 @@ const AiPage = () => {
       <div
         className={`
           ${loading ? "opacity-5" : ""}
-          fixed inset-x-0 mx-[16px]  bottom-[16px] sm:mx-auto sm:w-[496px] md:w-[584px] xl:bottom-[40px]
+          fixed inset-x-0 mx-[16px]  bottom-[16px] sm:mx-auto sm:w-[496px] md:w-[584px] 
           font-black  text-[#000000]  `}
       >
         <button
