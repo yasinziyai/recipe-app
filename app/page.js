@@ -72,71 +72,65 @@ const AiPage = () => {
     <div
       className={`  md:w-[616px] sm:w-[528px] xl:rounded-md rounded-none  flex-col   min-h-[1080px] mx-auto bg-[#232324] xl:my-8 xl:inset-y-0 py-8 px-4 `}
     >
-      <div className="relative">
-        {/* header */}
-        <div
-          className={` ${
-            validatedData?.data ? "border-b-[1px]" : null
-          }  border-[#FFFFFF] border-opacity-10 pb-4`}
+      {/* header */}
+      <div
+        className={` ${
+          validatedData?.data ? "border-b-[1px]" : null
+        }  border-[#FFFFFF] border-opacity-10 pb-4`}
+      >
+        <h1 className="text-[#FFFFFF]  font-black text-[36px] leading-[51.48px]">
+          چی میخوری؟
+        </h1>
+        <p className="mt-2 opacity-65 text-[#FFFFFF] text-[24px] leading-[34.32px] font-medium">
+          بهم بگو چی داری تو خونت، بهت میگم چی بخوری
+        </p>
+        <input
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="مثلا: سوسیس، تخم مرغ، بادمجون"
+          className="w-full text-w sm:text-[24px] text-opacity-45 leading-[34.32px] py-3 pr-4 text-[#FFFFFF] font-medium rounded-md outline-none bg-[#27272A] mt-6"
+        />
+      </div>
+      {/* response */}
+
+      {validatedData?.data?.map((i, index) => (
+        <motion.div
+          variants={listVariants}
+          initial="hidden"
+          animate="visible"
+          key={index}
+          className=" items-center justify-center bg-[#27272A] rounded-md px-4 py-4 my-4"
         >
-          <h1 className="text-[#FFFFFF]  font-black text-[36px] leading-[51.48px]">
-            چی میخوری؟
-          </h1>
-          <p className="mt-2 opacity-65 text-[#FFFFFF] text-[24px] leading-[34.32px] font-medium">
-            بهم بگو چی داری تو خونت، بهت میگم چی بخوری
+          <h1 className="font-medium text-[#FFFFFF]">عنوان غذا : {i.title}</h1>
+          <p className="text-[#FFFFFF] font-medium mt-4 ">
+            - مواد لازم : {i.ingredients}
           </p>
-          <input
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            placeholder="مثلا: سوسیس، تخم مرغ، بادمجون"
-            className="w-full text-w sm:text-[24px] text-opacity-45 leading-[34.32px] py-3 pr-4 text-[#FFFFFF] font-medium rounded-md outline-none bg-[#27272A] mt-6"
-          />
-        </div>
-        {/* response */}
+          <p className="text-[#FFFFFF] font-medium mt-4 ">
+            - دستور پخت : {i.recipe}
+          </p>
+        </motion.div>
+      ))}
 
-        {validatedData?.data?.map((i, index) => (
-          <motion.div
-            variants={listVariants}
-            initial="hidden"
-            animate="visible"
-            key={index}
-            className=" items-center justify-center bg-[#27272A] rounded-md px-4 py-4 my-4"
-          >
-            <h1 className="font-medium text-[#FFFFFF]">
-              عنوان غذا : {i.title}
-            </h1>
-            <p className="text-[#FFFFFF] font-medium mt-4 ">
-              - مواد لازم : {i.ingredients}
-            </p>
-            <p className="text-[#FFFFFF] font-medium mt-4 ">
-              - دستور پخت : {i.recipe}
-            </p>
-          </motion.div>
-        ))}
-
-        {/* footer */}
-        <div
-          className={`
+      {/* footer */}
+      <div
+        className={`
           ${loading ? "opacity-5" : ""}
           fixed inset-x-0 mx-[16px]  bottom-[16px] sm:mx-auto bg-[#27272A]   sm:w-[496px] md:w-[584px] xl:bottom-[42px]
           font-black  text-[#000000]  `}
+      >
+        <button
+          disabled={loading || (search.length === 0 && false)}
+          onClick={clickHandler}
+          className=" w-full bg-[#FFFFFF]  py-3  rounded-md "
         >
-          <button
-            disabled={loading || (search.length === 0 && false)}
-            onClick={clickHandler}
-            className=" w-full bg-[#FFFFFF]  py-3  rounded-md "
-          >
-            {loading ? (
-              "دارم فک میکنم!"
-            ) : (
-              <>
-                {click > 1 && validatedData?.data
-                  ? "دوباره بگو"
-                  : "پیشنهاد بده"}
-              </>
-            )}
-          </button>
-        </div>
+          {loading ? (
+            "دارم فک میکنم!"
+          ) : (
+            <>
+              {click > 1 && validatedData?.data ? "دوباره بگو" : "پیشنهاد بده"}
+            </>
+          )}
+        </button>
       </div>
     </div>
   );
