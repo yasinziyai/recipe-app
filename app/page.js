@@ -79,7 +79,11 @@ const AiPage = () => {
   return (
     <form
       onSubmit={handleKeyDown}
-      className={` md:w-[616px] sm:w-[528px] xl:rounded-[16px]  overflow-auto rounded-none  flex-col   min-h-screen mx-auto bg-[#232324] md:my-[32px]  py-8 px-4 `}
+      className={` md:w-[616px] sm:w-[528px] 
+        xl:rounded-[16px]  overflow-auto
+         rounded-none  flex-col  
+         min-h-screen mx-auto bg-[#232324] md:my-[32px] 
+          py-8 px-4 `}
     >
       {/* header */}
       <div
@@ -90,7 +94,11 @@ const AiPage = () => {
         <h1 className="text-[#FFFFFF]  font-black  text-[36px] md:text-[30px] leading-[51.48px]">
           چی میخوری؟
         </h1>
-        <p className="mt-2 opacity-65 text-[#FFFFFF] md:font-normal md:text-[19px] text-[24px] leading-[34.32px] font-medium">
+        <p
+          className="mt-2 opacity-65 text-[#FFFFFF]
+         md:font-normal md:text-[19px] text-[24px]
+          leading-[34.32px] font-medium"
+        >
           بهم بگو چی داری تو خونت، بهت میگم چی بخوری
         </p>
         <input
@@ -98,7 +106,9 @@ const AiPage = () => {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="مثلا: سوسیس، تخم مرغ، بادمجون"
-          className="w-full  md:text-[19px]  leading-[34.32px] py-3 pr-4 text-[#FFFFFF] font-medium rounded-[12px] outline-none bg-[#27272A] mt-6"
+          className="w-full  md:text-[19px]  leading-[34.32px]
+           py-3 pr-4 text-[#FFFFFF] font-medium 
+           rounded-[12px] outline-none bg-[#27272A] mt-6"
         />
       </div>
       {/* response */}
