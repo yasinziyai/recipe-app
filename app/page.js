@@ -67,9 +67,19 @@ const AiPage = () => {
       x: 0,
     },
   };
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      handleSubmit();
+    }
+  };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  };
+
   return (
-    <div
-      className={`  md:w-[616px] sm:w-[528px] xl:rounded-md rounded-none  flex-col   min-h-[1080px] mx-auto bg-[#232324] xl:my-8 xl:inset-y-0 py-8 px-4 `}
+    <form
+      onSubmit={handleKeyDown}
+      className={` md:w-[616px] sm:w-[528px] xl:rounded-[16px] rounded-none  flex-col   min-h-screen mx-auto bg-[#232324] xl:my-[32px]  py-8 px-4 `}
     >
       {/* header */}
       <div
@@ -77,17 +87,18 @@ const AiPage = () => {
           validatedData?.data ? "border-b-[1px]" : null
         }  border-[#FFFFFF] border-opacity-10 pb-4`}
       >
-        <h1 className="text-[#FFFFFF]  font-black text-[36px] leading-[51.48px]">
+        <h1 className="text-[#FFFFFF]  font-black  text-[36px] md:text-[30px] leading-[51.48px]">
           چی میخوری؟
         </h1>
-        <p className="mt-2 opacity-65 text-[#FFFFFF] text-[24px] leading-[34.32px] font-medium">
+        <p className="mt-2 opacity-65 text-[#FFFFFF] md:font-normal md:text-[19px] text-[24px] leading-[34.32px] font-medium">
           بهم بگو چی داری تو خونت، بهت میگم چی بخوری
         </p>
         <input
+          onKeyDown={onkeydown}
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="مثلا: سوسیس، تخم مرغ، بادمجون"
-          className="w-full text-w sm:text-[24px] text-opacity-45 leading-[34.32px] py-3 pr-4 text-[#FFFFFF] font-medium rounded-md outline-none bg-[#27272A] mt-6"
+          className="w-full  md:text-[19px]  leading-[34.32px] py-3 pr-4 text-[#FFFFFF] font-medium rounded-[12px] outline-none bg-[#27272A] mt-6"
         />
       </div>
       {/* response */}
@@ -114,18 +125,14 @@ const AiPage = () => {
       <div
         className={`
           ${loading ? "opacity-5" : ""}
-          fixed inset-x-0 mx-[16px]  bottom-[16px] sm:mx-auto bg-[#27272A]   sm:w-[496px] md:w-[584px] xl:bottom-[42px]
+          fixed inset-x-0 mx-[16px]  bottom-[16px] sm:mx-auto sm:w-[496px] md:w-[584px] xl:bottom-[40px]
           font-black  text-[#000000]  `}
       >
         <button
-          onKeyDownCapture={(e) => {
-            if (e.key === "Enter") {
-              clickHandler();
-            }
-          }}
+          type="submit"
           disabled={loading || (search.length === 0 && false)}
           onClick={clickHandler}
-          className={` w-full bg-[#FFFFFF]  py-3  rounded-md ${
+          className={` w-full bg-[#FFFFFF]  py-3  rounded-[12px] ${
             loading ? "animate-bounce" : ""
           }`}
         >
@@ -138,7 +145,7 @@ const AiPage = () => {
           )}
         </button>
       </div>
-    </div>
+    </form>
   );
 };
 
