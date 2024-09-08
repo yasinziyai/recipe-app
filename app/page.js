@@ -67,18 +67,17 @@ const AiPage = () => {
       x: 0,
     },
   };
-  const handleKeyDown = (event) => {
-    if (event.key === "Enter") {
-      handleSubmit();
-    }
-  };
+  // const handleKeyDown = (event) => {
+  //   if (event.key === "Enter") {
+  //     handleSubmit();
+  //   }
+  // };
   const handleSubmit = (event) => {
     event.preventDefault();
   };
 
   return (
-    <form
-      onSubmit={handleKeyDown}
+    <div
       className={` md:w-[616px] sm:w-[528px] 
         xl:rounded-[16px]  overflow-auto
          rounded-none  flex-col  
@@ -158,7 +157,7 @@ const AiPage = () => {
           )}
         </button>
       </div>
-    </form>
+    </div>
   );
 };
 
