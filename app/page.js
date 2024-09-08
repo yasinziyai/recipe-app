@@ -93,7 +93,6 @@ const AiPage = () => {
           بهم بگو چی داری تو خونت، بهت میگم چی بخوری
         </p>
         <input
-          onKeyDown={onkeydown}
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="مثلا: سوسیس، تخم مرغ، بادمجون"
