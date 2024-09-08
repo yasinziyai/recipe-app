@@ -67,14 +67,6 @@ const AiPage = () => {
       x: 0,
     },
   };
-  // const handleKeyDown = (event) => {
-  //   if (event.key === "Enter") {
-  //     handleSubmit();
-  //   }
-  // };
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  // };
 
   return (
     <div
