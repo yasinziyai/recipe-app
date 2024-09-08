@@ -136,7 +136,7 @@ const AiPage = () => {
         className={`
           ${loading ? "opacity-5" : ""}
           fixed inset-x-0 mx-[16px]  bottom-[16px] sm:mx-auto sm:w-[496px] md:w-[584px] 
-          font-black  text-[#000000] md:bottom-[42px]  `}
+          font-black  text-[#000000] md:bottom-[42px]    `}
       >
         <button
           type="submit"
