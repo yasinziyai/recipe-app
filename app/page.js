@@ -72,9 +72,9 @@ const AiPage = () => {
   //     handleSubmit();
   //   }
   // };
-  const handleSubmit = (event) => {
-    event.preventDefault();
-  };
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  // };
 
   return (
     <div
@@ -141,7 +141,6 @@ const AiPage = () => {
            md:bottom-[42px]`}
       >
         <button
-          type="submit"
           disabled={loading || (search.length === 0 && false)}
           onClick={clickHandler}
           className={` w-full bg-[#FFFFFF]  py-3  rounded-[12px] ${
