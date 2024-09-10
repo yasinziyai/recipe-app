@@ -12,9 +12,11 @@
     "@google/generative-ai": "^0.17.1",
     "framer-motion": "^11.5.4",
     "next": "14.2.7",
+    "next-pwa": "^5.6.0",
     "react": "^18",
     "react-dom": "^18",
-    "react-loader-spinner": "^6.1.6"
+    "react-loader-spinner": "^6.1.6",
+    "workbox-webpack-plugin": "^7.1.0"
   },
   "devDependencies": {
     "postcss": "^8",

@@ -69,83 +69,82 @@ const AiPage = () => {
   };
 
   return (
-    <div
-      className={` md:w-[616px] sm:w-[528px] 
-        xl:rounded-[16px]  overflow-auto
-         rounded-none  flex-col  
-         min-h-screen mx-auto bg-[#232324] md:my-[32px] 
-          py-8 px-4 `}
-    >
-      {/* header */}
-      <div
-        className={` ${
-          validatedData?.data ? "border-b-[1px]" : null
-        }  border-[#FFFFFF] border-opacity-10 pb-4`}
-      >
-        <h1 className="text-[#FFFFFF]  font-black  text-[36px] md:text-[30px] leading-[51.48px]">
-          چی میخوری؟
-        </h1>
-        <p
-          className="mt-2 opacity-65 text-[#FFFFFF]
+    <div className="w-[100vw] h-screen flex-col bg-black items-center overflow-hidden justify-center flex ">
+      <div className="md:w-[616px] items-center w-full md:py-[32px]  sm:w-[528px] h-full ">
+        <div className="bg-[#232324]  md:rounded-[16px] overflow-y-scroll   max-h-full px-[16px] py-[32px] ">
+          {/* header */}
+          <div
+            className={` ${
+              validatedData?.data ? "border-b-[1px]" : null
+            }  border-[#FFFFFF] border-opacity-10 pb-4`}
+          >
+            <h1 className="text-[#FFFFFF]  font-black  text-[36px] md:text-[30px] leading-[51.48px]">
+              چی میخوری؟
+            </h1>
+            <p
+              className="mt-2 opacity-65 text-[#FFFFFF]
          md:font-normal md:text-[19px] text-[24px]
           leading-[34.32px] font-medium"
-        >
-          بهم بگو چی داری تو خونت، بهت میگم چی بخوری
-        </p>
-        <input
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          placeholder="مثلا: سوسیس، تخم مرغ، بادمجون"
-          className="w-full  md:text-[19px]  leading-[34.32px]
+            >
+              بهم بگو چی داری تو خونت، بهت میگم چی بخوری
+            </p>
+            <input
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="مثلا: سوسیس، تخم مرغ، بادمجون"
+              className="w-full  md:text-[19px]  leading-[34.32px]
            py-3 pr-4 text-[#FFFFFF] font-medium 
            rounded-[12px] outline-none bg-[#27272A] mt-6"
-        />
-      </div>
-      {/* response */}
-
-      {validatedData?.data?.map((i, index) => (
-        <motion.div
-          variants={listVariants}
-          initial="hidden"
-          animate="visible"
-          key={index}
-          className=" items-center justify-center bg-[#27272A] rounded-md px-4 py-4 my-4"
+            />
+          </div>
+          {/* response */}
+          <div className="">
+            {validatedData?.data?.map((i, index) => (
+              <motion.div
+                variants={listVariants}
+                initial="hidden"
+                animate="visible"
+                key={index}
+                className=" items-center justify-center bg-[#27272A] rounded-md px-4 py-4 my-4"
+              >
+                <h1 className="font-medium text-[#FFFFFF]">
+                  عنوان غذا : {i.title}
+                </h1>
+                <p className="text-[#FFFFFF] font-medium mt-4 ">
+                  - مواد لازم : {i.ingredients}
+                </p>
+                <p className="text-[#FFFFFF] font-medium mt-4 ">
+                  - دستور پخت : {i.recipe}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+          {/* footer */}
+        </div>
+        <div
+          className={`
+            ${loading ? "opacity-5" : ""}  
+           relative bottom-[64px]  px-[16px] w-full  items-center flex justify-center
+          `}
         >
-          <h1 className="font-medium text-[#FFFFFF]">عنوان غذا : {i.title}</h1>
-          <p className="text-[#FFFFFF] font-medium mt-4 ">
-            - مواد لازم : {i.ingredients}
-          </p>
-          <p className="text-[#FFFFFF] font-medium mt-4 ">
-            - دستور پخت : {i.recipe}
-          </p>
-        </motion.div>
-      ))}
-
-      {/* footer */}
-      <div
-        className={`
-          ${loading ? "opacity-5" : ""}
-          fixed inset-x-0 mx-[16px] 
-          bottom-[16px] sm:mx-auto
-           sm:w-[496px] md:w-[584px] 
-          font-black  text-[#000000]
-           md:bottom-[42px]`}
-      >
-        <button
-          disabled={loading || (search.length === 0 && false)}
-          onClick={clickHandler}
-          className={` w-full bg-[#FFFFFF]  py-3  rounded-[12px] ${
-            loading ? "animate-bounce" : ""
-          }`}
-        >
-          {loading ? (
-            "دارم فک میکنم!"
-          ) : (
-            <>
-              {click > 1 && validatedData?.data ? "دوباره بگو" : "پیشنهاد بده"}
-            </>
-          )}
-        </button>
+          <button
+            disabled={loading || (search.length === 0 && false)}
+            onClick={clickHandler}
+            className={` w-full h-full py-[12px] rounded-[12px]  font-black bg-white ${
+              loading ? "animate-bounce" : ""
+            }`}
+          >
+            {loading ? (
+              "دارم فک میکنم!"
+            ) : (
+              <>
+                {click > 1 && validatedData?.data
+                  ? "دوباره بگو"
+                  : "پیشنهاد بده"}
+              </>
+            )}
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -162,3 +161,12 @@ function validJson(data2) {
 }
 
 export default AiPage;
+// className={`
+//    md:w-[616px] sm:w-[528px]
+//    xl:rounded-[16px]
+//    rounded-none  flex-col
+//     min-h-screen mx-auto
+//     bg-[#232324]
+//     md:my-[32px]
+//     py-8 px-4
+//     `}
