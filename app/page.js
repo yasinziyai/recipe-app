@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { motion } from "framer-motion";
 const AiPage = () => {
@@ -100,7 +100,7 @@ const AiPage = () => {
           </div>
 
           {/* response */}
-          <div className="">
+          <div className="pb-14">
             {validatedData?.data?.map((i, index) => (
               <motion.div
                 variants={listVariants}
