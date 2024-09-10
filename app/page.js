@@ -71,20 +71,21 @@ const AiPage = () => {
   return (
     <div className="w-[100vw] h-screen flex-col bg-black items-center overflow-hidden justify-center flex ">
       <div className="md:w-[616px] items-center w-full md:py-[32px]  sm:w-[528px] h-full ">
-        <div className="bg-[#232324]  md:rounded-[16px] overflow-y-scroll   max-h-full px-[16px] py-[32px] ">
+        <div className="bg-[#232324]  md:rounded-[16px] overflow-y-scroll   h-full px-[16px] py-[32px] ">
           {/* header */}
+
           <div
             className={` ${
               validatedData?.data ? "border-b-[1px]" : null
-            }  border-[#FFFFFF] border-opacity-10 pb-4`}
+            }  max-h-full border-[#FFFFFF] border-opacity-10 pb-4`}
           >
             <h1 className="text-[#FFFFFF]  font-black  text-[36px] md:text-[30px] leading-[51.48px]">
               چی میخوری؟
             </h1>
             <p
               className="mt-2 opacity-65 text-[#FFFFFF]
-         md:font-normal md:text-[19px] text-[24px]
-          leading-[34.32px] font-medium"
+              md:font-normal md:text-[19px] text-[24px]
+              leading-[34.32px] font-medium"
             >
               بهم بگو چی داری تو خونت، بهت میگم چی بخوری
             </p>
@@ -93,10 +94,11 @@ const AiPage = () => {
               onChange={(e) => setSearch(e.target.value)}
               placeholder="مثلا: سوسیس، تخم مرغ، بادمجون"
               className="w-full  md:text-[19px]  leading-[34.32px]
-           py-3 pr-4 text-[#FFFFFF] font-medium 
-           rounded-[12px] outline-none bg-[#27272A] mt-6"
+              py-3 pr-4 text-[#FFFFFF] font-medium 
+              rounded-[12px] outline-none bg-[#27272A] mt-6"
             />
           </div>
+
           {/* response */}
           <div className="">
             {validatedData?.data?.map((i, index) => (
