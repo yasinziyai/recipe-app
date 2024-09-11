@@ -1,8 +1,9 @@
 "use client";
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { motion } from "framer-motion";
 const AiPage = () => {
+  const inputRef = useRef(null);
   const genAi = new GoogleGenerativeAI(
     "AIzaSyB9ke6GbPgcjEbz0ilBgJmCaIYWeQKKsiU"
   );
@@ -48,7 +49,7 @@ const AiPage = () => {
 
   const jsonString = data2;
   const validatedData = validJson(jsonString);
-  const clickHandler = (e) => {
+  const clickHandler = () => {
     if (search.length > 1) {
       aiRun();
     } else {
@@ -56,7 +57,19 @@ const AiPage = () => {
     }
     setClick(click + 1);
   };
-  console.log(data2);
+  const keyHandler = (event) => {
+    console.log(event);
+    if (event.key === "Enter") {
+      clickHandler();
+    }
+  };
+  useEffect(() => {
+    document.addEventListener("keydown", keyHandler);
+    return () => {
+      document.removeEventListener("keydown", keyHandler);
+    };
+  }, [clickHandler]);
+  // console.log(data2);
   const listVariants = {
     hidden: {
       opacity: 0,
@@ -70,7 +83,7 @@ const AiPage = () => {
 
   return (
     <div className="w-[100vw] h-screen flex-col bg-black items-center overflow-hidden justify-center flex ">
-      <div className="md:w-[616px] items-center w-full md:py-[32px]  sm:w-[528px] h-full ">
+      <div className="md:w-[480px] items-center w-full md:py-[32px]  sm:w-[400px] h-full ">
         <div className="bg-[#232324]  md:rounded-[16px] overflow-y-scroll   h-full px-[16px] py-[32px] ">
           {/* header */}
 
@@ -90,6 +103,7 @@ const AiPage = () => {
               بهم بگو چی داری تو خونت، بهت میگم چی بخوری
             </p>
             <input
+              ref={inputRef}
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="مثلا: سوسیس، تخم مرغ، بادمجون"
