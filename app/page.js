@@ -4,9 +4,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import { motion } from "framer-motion";
 const AiPage = () => {
   const inputRef = useRef(null);
-  const genAi = new GoogleGenerativeAI(
-    "AIzaSyB9ke6GbPgcjEbz0ilBgJmCaIYWeQKKsiU"
-  );
+  const genAi = new GoogleGenerativeAI(process.env.NEXT_PUBLIC_GEMINI_API_KEY);
   const [search, setSearch] = useState("");
   const [responseAi, setResponseAi] = useState("{}");
   const [loading, setLoading] = useState(false);
@@ -14,27 +12,26 @@ const AiPage = () => {
   async function aiRun() {
     setLoading(true);
     setResponseAi("{}");
-    const model = genAi.getGenerativeModel({ model: "gemini-pro" });
+    const model = await genAi.getGenerativeModel({ model: "gemini-pro" });
     const prompt = `
-    من فقط ${search} هارا دارم .
-
-    حداقل پنج پیشنهاد بده ک بتوانم با استفاده از انها غذا درست کنم.
-    خروجی بصورت  json و ب زبان فارسی باشد
-    structure:
-    {
-    data:[
-       {
-    id: id data
-    title: "title in farsi",
-    ingredients :"ingredients food in farsi",
-    recipe:"recipe in farsi"
-    },
-        ]
-    } 
-    -فاصله ی بین کلمات رعایت شود و کلمات ب کلمه های بعی چسبیده نباشد
-     
-    `;
-
+      من فقط ${search} هارا دارم .
+      
+      حداقل پنج پیشنهاد بده ک بتوانم با استفاده از انها غذا درست کنم.
+      خروجی بصورت  json و ب زبان فارسی باشد
+      structure:
+      {
+        data:[
+          {
+            id: id data
+            title: "title in farsi",
+            ingredients :"ingredients food in farsi",
+            recipe:"recipe in farsi"
+            },
+            ]
+            } 
+            -فاصله ی بین کلمات رعایت شود و کلمات ب کلمه های بعی چسبیده نباشد
+            
+            `;
     const result = await model.generateContent(prompt);
     const response = await result.response;
     const text = response.text();
